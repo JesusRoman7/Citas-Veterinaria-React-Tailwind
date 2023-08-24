@@ -13,6 +13,14 @@ const Formulario = ({setPacientes, pacientes}) => {
     //Generando un state mas para el error
     const [error, setError] = useState(false);
 
+    //Generando un ID para el objetoPaciente y pasarselo a Listado Pacientes en el metodo de MAP como PROP
+    const generarId = () =>{
+        const random = Math.random().toString(36).substr(2);
+        const fecha = Date.now().toString(36);
+
+        return random + fecha;
+    }
+
     const handleSubmit = (e) =>{ //tambien le podemos pasar el evento
         e.preventDefault();
         //Validacion del Formulario
@@ -30,7 +38,8 @@ const Formulario = ({setPacientes, pacientes}) => {
             propietario,
             email,
             fecha,
-            sintomas
+            sintomas,
+            id: generarId()
         }
         console.log(objetoPaciente);
         setPacientes([...pacientes, objetoPaciente]); //le pasamos el objetoPaciente a setPacientes para que setPacientes modifique pacientes y agregue a su arreglo vacio el objetoPaciente, tomando en cuenta que le pasamos el spread tambien de los objetos ya existentes

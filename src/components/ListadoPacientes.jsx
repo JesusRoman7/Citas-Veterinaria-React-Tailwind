@@ -12,10 +12,12 @@ const ListadoPacientes = ({pacientes}) => {
 
         {/* Nota: aqui para iterar, como estamos dentro de un return, de preferencia usanos MAP y no forEach, ya que forEach en ningun momento usar un return, por esa razon usaremos MAP */}
         {pacientes.map((paciente)=>{
-            <Paciente 
+            return( <Paciente 
+                key={paciente.id}//para que no nos salga el error Each child in a list should have a unique "key" prop, le ponemos el key con el valur paciente.id de cada iteracion del objeto
                 paciente={paciente} //le pasamos todas las propiedades del iterador al PROP paciente PARA EL COMPONENTE PACIENTE
-            /> //Llamamos a este componente tantas veces como haya elementos en pacientes
+            /> )//Llamamos a este componente tantas veces como haya elementos en pacientes
         })}
+        {/* Nota IMPORTANTE: cuando vayamos a iterar y mostrar diferentes componentes una y otra vez en base a un arreglo TENEMOS QUE PASARLES UN ID UNICO*/}
 
     </div>
   )
