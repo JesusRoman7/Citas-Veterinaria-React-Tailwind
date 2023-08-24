@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 
-const Formulario = () => {
+const Formulario = ({setPacientes, pacientes}) => {
     //Creando nuestro primer state
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
@@ -20,8 +20,26 @@ const Formulario = () => {
             setError(true); //cambiamos el error a true
             return;
         }
-        
+        //Si no hay error, regresamos a false y le asignamos el paciente con el prop setPacientes
         setError(false);
+
+        //Construyendo el Objeto para distintos pacientes
+        const  objetoPaciente = {
+            nombre,
+            propietario,
+            email,
+            fecha,
+            sintomas
+        }
+        console.log(objetoPaciente);
+        setPacientes([...pacientes, objetoPaciente]); //le pasamos el objetoPaciente a setPacientes para que setPacientes modifique pacientes y agregue a su arreglo vacio el objetoPaciente, tomando en cuenta que le pasamos el spread tambien de los objetos ya existentes
+
+        //Reiniciar el formulario
+        setNombre('');
+        setPropietario('');
+        setEmail('');
+        setFecha('');
+        setSintomas('')
     }
 
   return (
