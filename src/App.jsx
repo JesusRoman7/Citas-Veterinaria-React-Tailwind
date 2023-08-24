@@ -16,7 +16,9 @@ function App() {
         pacientes={pacientes} //Pasandole los pacientes para poder hacer la copia que ya teniamos en el arreglo, en si usar esto 
         //...pacientes, objetoPaciente
         />
-        <ListadoPacientes />
+        <ListadoPacientes 
+        pacientes={pacientes} //aqui en este punto como ya tenemos un array de objetos y VAMOS A IMPRIMIR ESA INFO EN LISTADO PACIENTES, entonces debemos pasarlo como props, recordando que lo tenemos que extraer en ese Componente
+        />
       </div>
     </div>
   )

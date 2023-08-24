@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
+import Error from './Error'; //importando el componente para poder usarlo aqui
 
 const Formulario = ({setPacientes, pacientes}) => {
     //Creando nuestro primer state
@@ -55,11 +56,7 @@ const Formulario = ({setPacientes, pacientes}) => {
 
         <form className='bg-white shadow-md rounded-lg py-10 px-5 mb-10' action="" onSubmit={handleSubmit}>
 
-            {error && 
-                <div className='bg-red-800 text-white text-center p-3 uppercase font-bold mb-3 rounded'>
-                    <p>Todos los campos son obligatorios</p>
-                </div>
-            } {/* <-------COLOCANDO ERROR EN CASO DE QUE ERROR SEA TRUE, para eso sirve el && (si error entonces imprime en un div con un p si hay error) */}
+            {error && <Error mensaje={"Todos los campos son obligatorios"}/>} {/* haciendolo mas dinamico el error agregandole un prop con el mensaje de error, recordando pasarle ese prop en el archivo de Error */}
             
             <div className='mb-5'>
                 <label className='block text-gray-700 uppercase font-bold' htmlFor="mascota">Nombre Mascota</label>
