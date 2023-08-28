@@ -31,6 +31,7 @@ const Paciente = ({paciente, setPaciente}) => {
                 type='button' 
                 className='py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg uppercase'
                 onClick={()=> setPaciente(paciente)} //al darle click, usamos la funcion modificadora setPaciente, y le pasamos el objeto de paciente (el que usamos con MAP), al darle click, el useState de paciente (que esta en APP) se modifica gracias a la funcion modificadora y se llenan sus datos con el objeto paciente(MAP)
+                //NOTA IMPORTANTE: ESTE PACIENTE TAMBIEN TIENE ID, ESTE ID NOS VA A SERVIR DESPUES PARA CUANDO ESTEMOS EDITANDO, ES POR ESO QUE SI NOS VAMOS AL STATE de paciente, saldra en las propiedades que en efecto, tenemos un ID
             >
                 Editar
             </button>

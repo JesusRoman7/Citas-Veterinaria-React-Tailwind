@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Error from './Error'; //importando el componente para poder usarlo aqui
 
-const Formulario = ({setPacientes, pacientes , paciente}) => {
+const Formulario = ({setPacientes, pacientes , paciente, setPaciente}) => {
     //Creando nuestro primer state
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
@@ -52,10 +52,30 @@ const Formulario = ({setPacientes, pacientes , paciente}) => {
             email,
             fecha,
             sintomas,
-            id: generarId()
+            // id: generarId() este se movio en el else de abajo
         }
-        console.log(objetoPaciente);
-        setPacientes([...pacientes, objetoPaciente]); //le pasamos el objetoPaciente a setPacientes para que setPacientes modifique pacientes y agregue a su arreglo vacio el objetoPaciente, tomando en cuenta que le pasamos el spread tambien de los objetos ya existentes
+        //console.log(objetoPaciente);
+
+        //Si hay un id en paciente, entonces el state de paciente tiene algo y por lo tanto tiene un id
+        if(paciente.id){
+            //Editando el registro
+            objetoPaciente.id = paciente.id; //el id que ya teniamos en el paciente, se lo asignamos a este nuevo objeto, ya que al borrarlo arriba, no tenemos ningun id y eso nos marcaria error
+            console.log(paciente); //version anterior (por asi decirlo)
+            console.log(objetoPaciente); //el ya editado
+
+            //Creando un nuevo arreglo
+            const pacientesActualizados = pacientes.map(pacienteState =>{
+                return pacienteState.id === paciente.id ? objetoPaciente : pacienteState
+            }) //vamos a iterar por todos los objetos de pacientes, vamos a encontrar que el id sea igual a paciente.id, y a retornar como valor ese nuevo objeto, al estar iterando uno por uno si no es igual PUES SOLO RETORNA EL MISMO OBJETO, NO LE HAGAS NADA
+
+            setPacientes(pacientesActualizados);
+            setPaciente({});
+
+        }else{ //De otra manera, es que el state de paciente no tiene nada y es un nuevo registro
+            //Nuevo registro
+            objetoPaciente.id = generarId();
+            setPacientes([...pacientes, objetoPaciente]); //le pasamos el objetoPaciente a setPacientes para que setPacientes modifique pacientes y agregue a su arreglo vacio el objetoPaciente, tomando en cuenta que le pasamos el spread tambien de los objetos ya existentes
+        }
 
         //Reiniciar el formulario
         setNombre('');
