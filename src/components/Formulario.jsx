@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import Error from './Error'; //importando el componente para poder usarlo aqui
 
-const Formulario = ({setPacientes, pacientes}) => {
+const Formulario = ({setPacientes, pacientes , paciente}) => {
     //Creando nuestro primer state
     const [nombre, setNombre] = useState('');
     const [propietario, setPropietario] = useState('');
@@ -12,6 +12,11 @@ const Formulario = ({setPacientes, pacientes}) => {
 
     //Generando un state mas para el error
     const [error, setError] = useState(false);
+
+    //Declarando el useEffect
+    useEffect(()=>{
+
+    }, [])
 
     //Generando un ID para el objetoPaciente y pasarselo a Listado Pacientes en el metodo de MAP como PROP
     const generarId = () =>{
