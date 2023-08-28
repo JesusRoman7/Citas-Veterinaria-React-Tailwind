@@ -13,10 +13,18 @@ const Formulario = ({setPacientes, pacientes , paciente}) => {
     //Generando un state mas para el error
     const [error, setError] = useState(false);
 
-    //Declarando el useEffect
+    //Declarando el useEffect para cuando se da click en editar y cambie el state de paciente
     useEffect(()=>{
-
-    }, [])
+        if(Object.keys(paciente).length > 0){ //si la longitud es mayor a 0
+            //entonces aqui comienza a darle un nuevo valor a las variables y a ponerlas en ese input, ya que value="" es lo que se muestra en el HTML entonces si setNombre('Nero'), por lo tanto el value es value="Nero", entonces eso se imprime y se pone en el HTML en ese campo
+            //Nota: aqui setNombre y los demas states no se declaran ya estan en este componente de Formulario, por lo tanto no son props, children ni su madre
+            setNombre(paciente.nombre)
+            setPropietario(paciente.propietario)
+            setEmail(paciente.email)
+            setFecha(paciente.fecha)
+            setSintomas(paciente.sintomas)
+        }
+    }, [paciente])
 
     //Generando un ID para el objetoPaciente y pasarselo a Listado Pacientes en el metodo de MAP como PROP
     const generarId = () =>{
@@ -139,7 +147,7 @@ const Formulario = ({setPacientes, pacientes , paciente}) => {
             </div>
             <input type="submit" 
             className='bg-indigo-600 w-full p-3 text-white uppercase font-bold hover:bg-indigo-700 cursor-pointer transition-colors'
-            value="Agregar Paciente"
+            value={ paciente.id ? 'Editar Paciente' : 'Agregar Paciente'}
             />
         </form>
     </div>

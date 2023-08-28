@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Paciente from './Paciente'
 
 //Nota: cuando usamos la funcion modificadora setPaciente, este lo pasamos al componente Paciente.jsx
 const ListadoPacientes = ({pacientes, setPaciente}) => {
 
+    //Practica
+    useEffect(()=>{
+        if(pacientes.length > 0){
+            console.log('Nuevo Paciente');
+        }
+    }, [pacientes])
 
   return (
     <div className='md:w-1/2 lg:w-3/5 h-screen overflow-y-scroll'>
