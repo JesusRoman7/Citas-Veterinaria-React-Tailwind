@@ -5,6 +5,7 @@ import ListadoPacientes from './components/ListadoPacientes'
 
 function App() {
   const [pacientes, setPacientes] = useState([]); //Si tenemos un state que va a pasar por diferentes componentes lo mejor ES COLOCARLO EN EL ARCHIVO PRINCIPAL
+  const [paciente, setPaciente] = useState({}); //inicia como un objeto vacio ya que todos los elementos de la variable PACIENTES, son objetos, se creo este useState para el COMPONENTE DE PACIENTE.JSX para que al darle click le pasemos por via props, todo el OBJETO DE PACIENTE QUE ITERAMOS CON EL MAP, este (setPaciente) va a pasar por el componente ListadoPacientes, luego por Paciente, el setPaciente va a tomar como datos el objeto paciente(DEL MAP) para modificarlo y dejar esa info a paciente
 
   return (
     <div className='container mx-auto mt-20'>
@@ -18,6 +19,7 @@ function App() {
         />
         <ListadoPacientes 
         pacientes={pacientes} //aqui en este punto como ya tenemos un array de objetos y VAMOS A IMPRIMIR ESA INFO EN LISTADO PACIENTES, entonces debemos pasarlo como props, recordando que lo tenemos que extraer en ese Componente
+        setPaciente={setPaciente} //este va para el componente Paciente.jsx donde se encuentran los botones editar y eliminar, pero primero pasando por el componente ListadoPacientes, ya que es el padre de Paciente.jsx
         />
       </div>
     </div>
