@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 const Paciente = ({paciente, setPaciente, eliminarPaciente}) => {
     console.log(paciente);
