@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import Paciente from './Paciente'
 
 //Nota: cuando usamos la funcion modificadora setPaciente, este lo pasamos al componente Paciente.jsx
-const ListadoPacientes = ({pacientes, setPaciente}) => {
+const ListadoPacientes = ({pacientes, setPaciente, eliminarPaciente}) => {
 
     //Practica
     useEffect(()=>{
@@ -28,6 +28,7 @@ const ListadoPacientes = ({pacientes, setPaciente}) => {
                             key={paciente.id}//para que no nos salga el error Each child in a list should have a unique "key" prop, le ponemos el key con el valur paciente.id de cada iteracion del objeto
                             paciente={paciente} //le pasamos todas las propiedades del iterador al PROP paciente PARA EL COMPONENTE PACIENTE
                             setPaciente={setPaciente} //este va para Paciente.jsx
+                            eliminarPaciente={eliminarPaciente}
                         /> )//Llamamos a este componente tantas veces como haya elementos en pacientes
                     })}
                     {/* Nota IMPORTANTE: cuando vayamos a iterar y mostrar diferentes componentes una y otra vez en base a un arreglo TENEMOS QUE PASARLES UN ID UNICO*/}
